@@ -11,16 +11,28 @@ services:
     ports:
       - "8000:8000"
 
-  influxdb:
-    image: docker.io/bitnami/influxdb:2
+  redis-master:
+    image: 'bitnami/redis:latest'
     ports:
-      - 8086:8086
-      - 8088:8088
+      - 6379:6379
     environment:
-      - INFLUXDB_ADMIN_USER_PASSWORD=bitnami123
-      - INFLUXDB_ADMIN_USER_TOKEN=admintoken123
+      - REDIS_REPLICATION_MODE=master
+      - REDIS_PASSWORD=my_master_password
     volumes:
-      - influxdb_data:/bitnami/influxdb
+      - redis_data:/bitnami/redis
+
+  redis-replica:
+    image: 'bitnami/redis:latest'
+    ports:
+      - '6379'
+    depends_on:
+      - redis-master
+    environment:
+      - REDIS_REPLICATION_MODE=slave
+      - REDIS_MASTER_HOST=redis-master
+      - REDIS_MASTER_PORT_NUMBER=6379
+      - REDIS_MASTER_PASSWORD=my_master_password
+      - REDIS_PASSWORD=my_replica_password
 
   clickhouse-server:
     image: yandex/clickhouse-server
@@ -32,6 +44,12 @@ services:
       - '9000:9000'
       - '9009:9009'
 
+  client:
+    image: yandex/clickhouse-client
+    command: [ '--host', 'server' ]
+
 volumes:
-  influxdb_data:
+  redis_data:
+    driver: local
+  ch_data:
     driver: local
