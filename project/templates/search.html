@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+
+
+    <div class="container position-relative">
+      <h1 class="my-5 text-center">
+        Давайте поищем что-нибудь
+      </h1> 
+      <div class="container ">
+        
+        <div class="row g-3">
+          <div class="row g-2">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Введите поисковый запрос" aria-label="Request" aria-describedby="button-addon2">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2">Найти</button>
+            </div>
+          </div>              
+
+        </div>
+          
+      </div>
+    </div>
+
+    {% endblock content %}
