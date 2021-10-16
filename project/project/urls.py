@@ -16,6 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from django.http import HttpResponse
+from search import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.search, name='search'),
+    path('search_text/', views.search_text, name='searh_text'),
+    path('answer/<int:aid>/', views.answer, name='answer'),
+    # path('search1/', views.search1, name='searh1'),
 ]
