@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+    <div class="container position-relative">
+      
+      <h1 class="my-5 text-center">
+        Давайте поищем что-нибудь
+      </h1> 
+      <div class="container ">
+        
+        <div class="row g-3 w-75 mx-auto">
+          <div class="row g-2">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Введите поисковый запрос" aria-label="Request" aria-describedby="button-addon2">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2">Найти</button>
+            </div>
+          </div>              
+
+        </div>
+
+
+        <div class="d-grid gap-3 w-75 mx-auto">
+
+
+          <!-- <p>
+            {% if questions%}
+            {{page_obj}}
+            {% else %}
+                <p>No polls are available.</p>
+            {% endif %}
+
+          </p> -->
+
+          {% for answer in page_obj %}
+              {% if answer.is_active %}
+              <p>
+                123456789
+              </p> 
+              {%endif%}
+              {% include 'inc/answer.html' %}
+          {% endfor %}
+
+          <!-- {% include 'inc/answer.html' %} -->
+<!--           
+
+          <div class="row p-2 bg-light border">
+            <div class="col-sm-10 d-flex align-items-start flex-column">
+              <p> Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                
+              </p>
+            </div>
+            <div class="col  d-flex align-items-end flex-column">
+              <div class="form-floating ">
+                <div class="input-group mb-3">
+                  <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btn-check-outlined">Перейти</label><br>
+                </div>
+                
+                <div class="input-group mb-3">
+                  <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+                  <label class="btn btn-outline-success" for="success-outlined">Хорошо</label>
+                </div>
+                
+                <div class="input-group mb-3">
+                  <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+                  <label class="btn btn-outline-danger" for="danger-outlined">Плохо</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row p-2 bg-light border">
+            <div class="col-sm-10 d-flex align-items-start flex-column">
+              <p> Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                
+              </p>
+            </div>
+            <div class="col  d-flex align-items-end flex-column">
+              <div class="form-floating ">
+                <div class="input-group mb-3">
+                  <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btn-check-outlined">Перейти</label><br>
+                </div>
+                
+                <div class="input-group mb-3">
+                  <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+                  <label class="btn btn-outline-success" for="success-outlined">Хорошо</label>
+                </div>
+                
+                <div class="input-group mb-3">
+                  <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+                  <label class="btn btn-outline-danger" for="danger-outlined">Плохо</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row p-2 bg-light border">
+            <div class="col-sm-10 d-flex align-items-start flex-column">
+              <p> Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                
+              </p>
+            </div>
+            <div class="col  d-flex align-items-end flex-column">
+              <div class="form-floating ">
+                <div class="input-group mb-3">
+                  <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btn-check-outlined">Перейти</label><br>
+                </div>
+                
+                <div class="input-group mb-3">
+                  <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+                  <label class="btn btn-outline-success" for="success-outlined">Хорошо</label>
+                </div>
+                
+                <div class="input-group mb-3">
+                  <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+                  <label class="btn btn-outline-danger" for="danger-outlined">Плохо</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row p-2 bg-light border">
+            <div class="col-sm-10 d-flex align-items-start flex-column">
+              <p> Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                Съешь ещё этих мягких французских булок, да выпей чаю 
+                
+              </p>
+            </div>
+            <div class="col  d-flex align-items-end flex-column">
+              <div class="form-floating ">
+                <div class="input-group mb-3">
+                  <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btn-check-outlined">Перейти</label><br>
+                </div>
+                
+                <div class="input-group mb-3">
+                  <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+                  <label class="btn btn-outline-success" for="success-outlined">Хорошо</label>
+                </div>
+                
+                <div class="input-group mb-3">
+                  <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+                  <label class="btn btn-outline-danger" for="danger-outlined">Плохо</label>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          
+        </div>
+
+        {% include 'inc/paginator.html' %}
+        
+          
+      </div>
+    </div>
+
+    
+    
+
+    {% endblock content %}
