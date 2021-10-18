@@ -14,15 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 
-from django.http import HttpResponse
+# from django.http import HttpResponse
 from search import views
 
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('', views.search, name='search'),
+#     path('search_text/', views.search_text, name='searh_text'),
+#     path('answer/<int:aid>/', views.answer, name='answer'),
+#     # path('search1/', views.search1, name='searh1'),
+# ]
+
+# https://docs.djangoproject.com/en/dev/topics/http/urls/#url-dispatcher
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.search, name='search'),
-    path('search_text/', views.search_text, name='searh_text'),
-    path('answer/<int:aid>/', views.answer, name='answer'),
-    # path('search1/', views.search1, name='searh1'),
+    path('search_text/', views.search_text, name='search_text'),
+    re_path(r'^search_text/(?P<query>\w+)/$', views.search_text, name='search_text'),
+    re_path(r'^search_text/(?P<query>\w+)/(?P<id>\d+)/(?P<action>\w+)/$', views.action, name='search_text'),
 ]
