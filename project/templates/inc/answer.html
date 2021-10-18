@@ -2,34 +2,7 @@
 
 <div class="row p-2 bg-light border">
     <div class="col-sm-10 d-flex align-items-start flex-column">
-      <p> Съешь ещё этих мягких французских булок, да выпей чаю 
-        Съешь ещё этих мягких французских булок, да выпей чаю 
-        Съешь ещё этих мягких французских булок, да выпей чаю 
-        Съешь ещё этих мягких французских булок, да выпей чаю 
-        Съешь ещё этих мягких французских булок, да выпей чаю 
-        Съешь ещё этих мягких французских булок, да выпей чаю 
-        Съешь ещё этих мягких французских булок, да выпей чаю 
-        Съешь ещё этих мягких французских булок, да выпей чаю 
-        Съешь ещё этих мягких французских булок, да выпей чаю 
-        Съешь ещё этих мягких французских булок, да выпей чаю 
-        <p>{{answer.id}}</p>
-        <p>{{answer}}</p>
-
-        <p>
-          <a href="{% url 'answer' aid=1 %}">
-            BLABLABLA
-            <script>
-              console.log({{answer.aid}})
-              </script>
-          </a>
-          {% csrf_token %}
-    {{ form }}
-          <form action="{% url 'answer' 1%}" method="post">
-            <input type="submit" value="{{ answer.tag }}">
-          </form>
-
-          
-        </p>
+      <p> {{tile.text}}
 
         
       </p>
@@ -38,20 +11,27 @@
       <div class="form-floating ">
         <div class="input-group mb-3">
           {% csrf_token %}
-          <form action="{% url 'answer' 1%}" method="post" name="kek">
+          <form action="/search_text/{{tile.query}}/{{tile.id}}/go/" method="post">
+            {% csrf_token %}
             <input type="submit" class="btn-check" id="btn-check-outlined" autocomplete="off">
             <label class="btn btn-outline-primary" for="btn-check-outlined">Перейти</label><br>
           </form>
         </div>
         
         <div class="input-group mb-3">
-          <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-          <label class="btn btn-outline-success" for="success-outlined">Хорошо</label>
+          <form action="/search_text/{{tile.query}}/{{tile.id}}/good/" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn-check" id="success-outlined" autocomplete="off" checked>
+            <label class="btn btn-outline-success" for="success-outlined">Хорошо</label>
+          </form>
         </div>
         
         <div class="input-group mb-3">
-          <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
-          <label class="btn btn-outline-danger" for="danger-outlined">Плохо</label>
+          <form action="/search_text/{{tile.query}}/{{tile.id}}/bad/" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn-check" id="danger-outlined" autocomplete="off">
+            <label class="btn btn-outline-danger" for="danger-outlined">Плохо</label>
+          </form>
         </div>
       </div>
     </div>
