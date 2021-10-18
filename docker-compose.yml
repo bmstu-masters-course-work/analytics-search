@@ -10,29 +10,31 @@ services:
       - ./sqlite/:/project/sqlite/
     ports:
       - "8000:8000"
+    networks:
+      - clickhouse
 
-  redis-master:
-    image: 'bitnami/redis:latest'
-    ports:
-      - 6379:6379
-    environment:
-      - REDIS_REPLICATION_MODE=master
-      - REDIS_PASSWORD=my_master_password
-    volumes:
-      - redis_data:/bitnami/redis
+#   redis-master:
+#     image: 'bitnami/redis:latest'
+#     ports:
+#       - 6379:6379
+#     environment:
+#       - REDIS_REPLICATION_MODE=master
+#       - REDIS_PASSWORD=my_master_password
+#     volumes:
+#       - redis_data:/bitnami/redis
 
-  redis-replica:
-    image: 'bitnami/redis:latest'
-    ports:
-      - '6379'
-    depends_on:
-      - redis-master
-    environment:
-      - REDIS_REPLICATION_MODE=slave
-      - REDIS_MASTER_HOST=redis-master
-      - REDIS_MASTER_PORT_NUMBER=6379
-      - REDIS_MASTER_PASSWORD=my_master_password
-      - REDIS_PASSWORD=my_replica_password
+#   redis-replica:
+#     image: 'bitnami/redis:latest'
+#     ports:
+#       - '6379'
+#     depends_on:
+#       - redis-master
+#     environment:
+#       - REDIS_REPLICATION_MODE=slave
+#       - REDIS_MASTER_HOST=redis-master
+#       - REDIS_MASTER_PORT_NUMBER=6379
+#       - REDIS_MASTER_PASSWORD=my_master_password
+#       - REDIS_PASSWORD=my_replica_password
 
   clickhouse-server:
     image: yandex/clickhouse-server
@@ -41,15 +43,47 @@ services:
 #      driver: none
     ports:
       - '8123:8123'
-      - '9000:9000'
+      - '10000:10000'
       - '9009:9009'
+    volumes:
+      - ch_data:/var/lib/clickhouse
+      - ch_config:/etc/clickhouse-server/
+    networks:
+      - clickhouse
 
-  client:
-    image: yandex/clickhouse-client
-    command: [ '--host', 'server' ]
+#   clickhouse-client:
+#     image: yandex/clickhouse-client
+#     command: [ '--host', 'server' ]
+#     depends_on: 
+#       - clickhouse-server
+  
+  migration:
+    build: ./clickhouse
+    depends_on:
+      - clickhouse-server
+    networks:
+      - clickhouse
+      
+  grafana:
+    build: ./grafana
+    restart: unless-stopped
+    environment:
+      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: vertamedia-clickhouse-datasource 
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./grafana.db:/var/lib/grafana/grafana.db
 
 volumes:
   redis_data:
     driver: local
   ch_data:
     driver: local
+  ch_config:
+    driver: local
+  grafana_data:
+    driver: local
+
+networks:
+  clickhouse:
+    name: clickhouse
