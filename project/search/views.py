@@ -71,6 +71,16 @@ def search_text(request, query=''):
             })
         # GET - generate tiles and send to client and redis or get from redis and send to client
         else:
+
+            search_log_data = search_log()
+            search_log_data.timestamp = round(int(time()) / 10) * 10
+            search_log_data.query = query
+            search_log_data.action = "search"
+            search_log_data.id = -1
+            search_log_data.user_agent = request.META['HTTP_USER_AGENT']
+
+            log = connections['default'].insert([search_log_data])
+
             form = SearchForm({'search_query': query})
             tiles = get_tiles(query)
             page_obj = paginate(request, tiles)
@@ -84,10 +94,6 @@ def search_text(request, query=''):
 
 def action(request, query='', id=0, action=''):
     # Clickhouse send
-    print(query)
-    print(id)
-    print(action)
-
     search_log_data = search_log()
     search_log_data.timestamp = round(int(time()) / 10) * 10
     search_log_data.query = query
@@ -96,8 +102,5 @@ def action(request, query='', id=0, action=''):
     search_log_data.user_agent = request.META['HTTP_USER_AGENT']
 
     log = connections['default'].insert([search_log_data])
-    # print("connections['default']", connections['default'])
-    # for tmp in connections['default'].select('SELECT action FROM search_log WHERE timestamp=\'{}\''.format(int(time())), search_log):
-    #     print("Log.objects_in(connections['default']).all()", tmp.action)
 
     return redirect('search_text', query=query)
