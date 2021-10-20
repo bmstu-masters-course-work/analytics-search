@@ -69,3 +69,5 @@ urllib3==1.26.7
 vine==5.0.0
 webencodings==0.5.1
 widgetsnbextension==3.5.1
+
+django-redis==5.0.0
