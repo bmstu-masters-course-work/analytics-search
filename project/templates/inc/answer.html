@@ -2,11 +2,28 @@
 
 <div class="row p-2 bg-light border">
     <div class="col-sm-10 d-flex align-items-start flex-column">
-      <p> {{tile.text}}
 
-        
-      </p>
+      <div>
+        <p class="fs-3 fw-bolder text-decoration-underline">
+          {{tile.name}}
+        </p>
+        <p class="fs-5">
+          
+          <!-- <p>  -->
+            {{tile.description}}      
+          <!-- </p> -->
+              
+          
+        </p>
+
+        <p class="fs-6 text-end fst-italic ">
+          {{tile.source}}
+        </p>
+
+      </div>
+
     </div>
+
     <div class="col  d-flex align-items-end flex-column">
       <div class="form-floating ">
         <div class="input-group mb-3">

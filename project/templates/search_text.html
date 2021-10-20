@@ -27,16 +27,20 @@
 
         <div class="d-grid gap-3 w-75 mx-auto">
 
-            {% for tile in tiles %}
-                {% if tile.is_active %}
+            {% for tile in page_obj %}
+                            
                     <p>
                         {% include 'inc/answer.html' %}        
                     </p>
-                {%endif%}
+                    
+                
                 
             {% endfor %}
 
         </div>
+
+
+        {% include 'inc/paginator.html' %}
 
     </div>
 
