@@ -1,4 +1,7 @@
+from time import time
 from django.shortcuts import render, redirect
+from search.models import search_log
+from django_clickhouse.database import connections
 
 from django.core.paginator import Paginator
 
@@ -66,4 +69,17 @@ def action(request, query='', id=0, action=''):
     print(query)
     print(id)
     print(action)
+
+    search_log_data = search_log()
+    search_log_data.timestamp = round(int(time())/10)*10
+    search_log_data.query = query
+    search_log_data.action = action
+    search_log_data.id = id
+    search_log_data.user_agent = request.META['HTTP_USER_AGENT']
+
+    log = connections['default'].insert([search_log_data])
+    # print("connections['default']", connections['default'])
+    # for tmp in connections['default'].select('SELECT action FROM search_log WHERE timestamp=\'{}\''.format(int(time())), search_log):
+    #     print("Log.objects_in(connections['default']).all()", tmp.action)
+
     return redirect('search_text', query=query)

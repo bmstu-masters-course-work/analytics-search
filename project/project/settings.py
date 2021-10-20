@@ -41,6 +41,16 @@ INSTALLED_APPS = [
     'search',
 ]
 
+# django-clickhouse library setup
+CLICKHOUSE_DATABASES = {
+    # Connection name to refer in using(...) method
+    'default': {
+        'db_name': 'default',
+        'db_url': 'http://localhost:8123',
+        'log_statements': True,
+    }
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
