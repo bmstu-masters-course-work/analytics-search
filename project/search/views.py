@@ -76,7 +76,7 @@ def search_text(request, query=''):
             search_log_data.timestamp = round(int(time()) / 10) * 10
             search_log_data.query = query
             search_log_data.action = "search"
-            search_log_data.id = -1
+            search_log_data.tile_id = -1
             search_log_data.user_agent = request.META['HTTP_USER_AGENT']
 
             log = connections['default'].insert([search_log_data])
@@ -98,7 +98,7 @@ def action(request, query='', id=0, action=''):
     search_log_data.timestamp = round(int(time()) / 10) * 10
     search_log_data.query = query
     search_log_data.action = action
-    search_log_data.id = id
+    search_log_data.tile_id = id
     search_log_data.user_agent = request.META['HTTP_USER_AGENT']
 
     log = connections['default'].insert([search_log_data])
