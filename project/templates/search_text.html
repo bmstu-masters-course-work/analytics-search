@@ -27,16 +27,30 @@
 
         <div class="d-grid gap-3 w-75 mx-auto">
 
-            {% for tile in tiles %}
-                {% if tile.is_active %}
+            {% if page_obj%}
+                {% for tile in page_obj %}
+                                
+                        <p>
+                            {% include 'inc/answer.html' %}        
+                        </p>
+                        
+                    
+                    
+                {% endfor %}
+
+            {% else %}
+                {% if string_query %}
                     <p>
-                        {% include 'inc/answer.html' %}        
+                        По вашему запросу ничего не найдено.
                     </p>
-                {%endif%}
-                
-            {% endfor %}
+                {% endif %}
+            {% endif %}
 
         </div>
+
+        {% if page_obj.paginator.page_range|length > 1%}
+            {% include 'inc/paginator.html' %}
+        {% endif %}
 
     </div>
 
