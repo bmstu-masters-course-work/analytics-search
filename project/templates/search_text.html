@@ -39,8 +39,7 @@
                 {% endfor %}
 
             {% else %}
-            {{page_obj}}
-                {% if query %}
+                {% if string_query %}
                     <p>
                         По вашему запросу ничего не найдено.
                     </p>

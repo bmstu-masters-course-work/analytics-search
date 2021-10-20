@@ -80,7 +80,7 @@ def search_text(request, query=''):
                 'form': form,
                 'tiles': tiles, 
                 'page_obj': page_obj,
-                'query': query
+                'string_query': query
             })
 
 
