@@ -73,6 +73,9 @@ services:
       - '3000:3000'
     volumes:
       - ./grafana.db:/var/lib/grafana/grafana.db
+    networks:
+      - redis
+      - clickhouse
 
 volumes:
   redis_data:
