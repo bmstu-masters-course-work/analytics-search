@@ -22,6 +22,7 @@ from search import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('search_text/', views.search_text, name='search_text'),
-    re_path(r'^search_text/(?P<query>\w+)/$', views.search_text, name='search_text'),
-    re_path(r'^search_text/(?P<query>\w+)/(?P<id>\d+)/(?P<action>\w+)/$', views.action, name='search_text'),
+
+    re_path(r'^search_text/(?P<query>[\w|\W]+)/$', views.search_text, name='search_text'),
+    re_path(r'^search_text/(?P<query>[\w|\W]+)/$/(?P<id>\d+)/(?P<action>\w+)/$', views.action, name='search_text'),
 ]
