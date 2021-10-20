@@ -1,20 +1,12 @@
 from time import time
 from django.shortcuts import render, redirect
-from search.models import search_log
 from django_clickhouse.database import connections
-
 from django.core.paginator import Paginator
-
-from django.views.decorators.csrf import csrf_protect
-
 from .forms import SearchForm
-
 from django.core.cache import cache
 from django.conf import settings
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
-
 from django.views.decorators.cache import cache_page
-
 from .models import *
 
 
@@ -61,7 +53,7 @@ def get_tiles(query):
 # check form and get query from it and redirect
 # [REDIRECT] GET /search_text/<query>
 # render tiles
-@cache_page(CACHE_TTL)
+# @cache_page(CACHE_TTL)
 def search_text(request, query=''):
     # POST - check and redirect
     if request.method == 'POST':
