@@ -23,7 +23,6 @@ django-clickhouse==1.1.2
 entrypoints==0.3
 idna==3.3
 infi.clickhouse-orm==2.1.0
-ipykernel @ file:///tmp/build/80754af9/ipykernel_1633534655931/work/dist/ipykernel-6.4.1-py3-none-any.whl
 ipython==7.28.0
 ipython-genutils @ file:///tmp/build/80754af9/ipython_genutils_1606773439826/work
 ipywidgets==7.6.5
