@@ -24,16 +24,13 @@ entrypoints==0.3
 idna==3.3
 infi.clickhouse-orm==2.1.0
 ipython==7.28.0
-ipython-genutils @ file:///tmp/build/80754af9/ipython_genutils_1606773439826/work
 ipywidgets==7.6.5
 iso8601==0.1.16
-jedi @ file:///tmp/build/80754af9/jedi_1611333729159/work
 Jinja2==3.0.2
 jsonschema==4.1.0
 jupyter==1.0.0
 jupyter-client==7.0.6
 jupyter-console==6.4.0
-jupyter-core @ file:///tmp/build/80754af9/jupyter_core_1633420104186/work
 jupyterlab-pygments==0.1.2
 jupyterlab-widgets==1.0.2
 kombu==5.1.0
@@ -48,11 +45,8 @@ notebook==6.4.4
 packaging==21.0
 pandocfilters==1.5.0
 parso==0.8.2
-pexpect @ file:///tmp/build/80754af9/pexpect_1605563209008/work
-pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
 prometheus-client==0.11.0
 prompt-toolkit==3.0.20
-ptyprocess @ file:///tmp/build/80754af9/ptyprocess_1609355006118/work/dist/ptyprocess-0.7.0-py2.py3-none-any.whl
 pycparser==2.20
 Pygments==2.10.0
 pyparsing==2.4.7
@@ -69,11 +63,9 @@ sqlparse==0.4.2
 statsd==3.3.0
 terminado==0.12.1
 testpath==0.5.0
-tornado @ file:///tmp/build/80754af9/tornado_1606942317143/work
 traitlets==5.1.0
 tzlocal==3.0
 urllib3==1.26.7
 vine==5.0.0
-wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work
 webencodings==0.5.1
 widgetsnbextension==3.5.1
