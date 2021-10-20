@@ -47,7 +47,7 @@ CLICKHOUSE_DATABASES = {
     # Connection name to refer in using(...) method
     'default': {
         'db_name': 'default',
-        'db_url': 'http://localhost:8123',
+        'db_url': 'http://clickhouse-server:8123',
         'log_statements': True,
     }
 }
@@ -145,7 +145,7 @@ STATICFILES_DIRS = [
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://localhost:6379/",
+        "LOCATION": "redis://redis-master:6379/",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "PASSWORD": "my_master_password"
