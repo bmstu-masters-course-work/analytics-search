@@ -14,6 +14,7 @@ services:
       - redis-master
       - clickhouse-server
     networks:
+      - redis
       - clickhouse
 
   redis-master:
@@ -25,19 +26,21 @@ services:
       - REDIS_PASSWORD=my_master_password
     volumes:
       - redis_data:/bitnami/redis
+    networks:
+      - redis
 
-  redis-replica:
-    image: 'bitnami/redis:latest'
-    ports:
-      - '6379'
-    depends_on:
-      - redis-master
-    environment:
-      - REDIS_REPLICATION_MODE=slave
-      - REDIS_MASTER_HOST=redis-master
-      - REDIS_MASTER_PORT_NUMBER=6379
-      - REDIS_MASTER_PASSWORD=my_master_password
-      - REDIS_PASSWORD=my_replica_password
+#  redis-replica:
+#    image: 'bitnami/redis:latest'
+#    ports:
+#      - '6379'
+#    depends_on:
+#      - redis-master
+#    environment:
+#      - REDIS_REPLICATION_MODE=slave
+#      - REDIS_MASTER_HOST=redis-master
+#      - REDIS_MASTER_PORT_NUMBER=6379
+#      - REDIS_MASTER_PASSWORD=my_master_password
+#      - REDIS_PASSWORD=my_replica_password
 
   clickhouse-server:
     image: yandex/clickhouse-server
@@ -83,4 +86,6 @@ volumes:
 
 networks:
   clickhouse:
+    name: clickhouse
+  redis:
     name: clickhouse
