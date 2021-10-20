@@ -73,10 +73,10 @@ def search_text(request, query=''):
         else:
 
             search_log_data = search_log()
-            search_log_data.timestamp = round(int(time()) / 10) * 10
+            search_log_data.timestamp = round(int(time()) / 5) * 5
             search_log_data.query = query
             search_log_data.action = "search"
-            search_log_data.tile_id = -1
+            search_log_data.tile_id = 0
             search_log_data.user_agent = request.META['HTTP_USER_AGENT']
 
             log = connections['default'].insert([search_log_data])
@@ -95,7 +95,7 @@ def search_text(request, query=''):
 def action(request, query='', id=0, action=''):
     # Clickhouse send
     search_log_data = search_log()
-    search_log_data.timestamp = round(int(time()) / 10) * 10
+    search_log_data.timestamp = round(int(time()) / 5) * 5
     search_log_data.query = query
     search_log_data.action = action
     search_log_data.tile_id = id
