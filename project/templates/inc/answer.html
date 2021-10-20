@@ -27,28 +27,26 @@
     <div class="col  d-flex align-items-end flex-column">
       <div class="form-floating ">
         <div class="input-group mb-3">
-          {% csrf_token %}
-          <form action="/search_text/{{string_query}}/{{tile.id}}/go/" method="post">
+            <form action="{% url 'action' string_query tile.id 'go' %}" method="post">
             {% csrf_token %}
-            <input type="submit" class="btn-check" id="btn-check-outlined" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btn-check-outlined">Перейти</label><br>
+            <input type="submit" class="btn-check" id="btn-check-outlined-{{tile.id}}" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btn-check-outlined-{{tile.id}}">Перейти</label><br>
           </form>
         </div>
         
         <div class="input-group mb-3">
-          <form action="/search_text/{{string_query}}/{{tile.id}}/good/" method="post">
-          <!-- <form action="{% url 'action' query=string_query id=tile.id action='post' %}" method="post"> -->
+          <form action="{% url 'action' string_query tile.id 'good' %}" method="post">
             {% csrf_token %}
-            <input type="submit" class="btn-check" id="success-outlined" autocomplete="off" checked>
-            <label class="btn btn-outline-success" for="success-outlined">Хорошо</label>
+            <input type="submit" class="btn-check" id="success-outlined-{{tile.id}}" autocomplete="off" checked>
+            <label class="btn btn-outline-success" for="success-outlined-{{tile.id}}">Хорошо</label>
           </form>
         </div>
         
         <div class="input-group mb-3">
-          <form action="/search_text/{{string_query}}/{{tile.id}}/bad/" method="post">
-            {% csrf_token %}
-            <input type="submit" class="btn-check" id="danger-outlined" autocomplete="off">
-            <label class="btn btn-outline-danger" for="danger-outlined">Плохо</label>
+          <form action="{% url 'action' string_query tile.id 'bad' %}" method="post">
+              {% csrf_token %}
+            <input type="submit" class="btn-check" id="danger-outlined-{{tile.id}}" autocomplete="off">
+            <label class="btn btn-outline-danger" for="danger-outlined-{{tile.id}}">Плохо</label>
           </form>
         </div>
       </div>
