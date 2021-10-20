@@ -28,7 +28,7 @@ def search(tiles, query, cached = False):
     results = []
     for tile in tiles:
         print('cached: ', cached)
-        if query in tile['description']:
+        if query in tile['description'] or query in tile['name']:
             if cached:
                 tile['source'] = 'Этот ответ был взят из кеша.'
             else:
@@ -79,8 +79,8 @@ def search_text(request, query=''):
             return render(request, 'search_text.html', {
                 'form': form,
                 'tiles': tiles, 
-                'cache': cache.get('tiles'),
-                'page_obj': page_obj
+                'page_obj': page_obj,
+                'query': query
             })
 
 
